@@ -23,9 +23,9 @@ export default function Home() {
       const data = await res.json();
       setMessage(data.message);
 
-      if (res.ok && data.success) {
-        router.push("/dashboard");
-      }
+      // if (res.ok && data.success) {
+      //   router.push("/dashboard");
+      // }
     } catch {
       setMessage("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้");
     }

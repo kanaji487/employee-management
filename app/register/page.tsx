@@ -93,7 +93,7 @@ export default function Register() {
 
         <p className="mt-6 text-center text-sm text-gray-600">
           มีบัญชีอยู่แล้ว?{" "}
-          <a href="/login" className="text-blue-500 hover:underline font-medium">
+          <a href="/" className="text-blue-500 hover:underline font-medium">
             เข้าสู่ระบบ
           </a>
         </p>
