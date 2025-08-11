@@ -23,9 +23,9 @@ export default function Home() {
       const data = await res.json();
       setMessage(data.message);
 
-      // if (res.ok && data.success) {
-      //   router.push("/dashboard");
-      // }
+      if (res.ok && data.success) {
+        router.push(`/otp?email=${encodeURIComponent(email)}`);
+      }
     } catch {
       setMessage("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้");
     }
@@ -71,10 +71,6 @@ export default function Home() {
         >
           Login
         </button>
-
-        {message && (
-          <p className="mt-4 text-center text-sm text-red-500">{message}</p>
-        )}
 
         <p className="mt-6 text-center text-sm text-gray-600">
           ยังไม่มีบัญชี?{" "}
