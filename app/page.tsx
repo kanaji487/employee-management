@@ -81,6 +81,15 @@ export default function Home() {
             สมัครสมาชิก
           </a>
         </p>
+        <p className="mt-2 text-center text-sm text-gray-600">
+          ลืมรหัสผ่าน{" "}
+          <a
+            href="/reset-password"
+            className="text-blue-500 hover:underline font-medium"
+          >
+            Reset password
+          </a>
+        </p>
       </form>
     </div>
   );
