@@ -3,6 +3,13 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+  InputOTPSeparator
+} from "@/components/ui/input-otp";
+import { Button } from "@/components/ui/button";
 
 const page = () => {
   const [otp, setOtp] = useState("");
@@ -11,11 +18,6 @@ const page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get("email") || "";
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, "").slice(0, 6);
-    setOtp(value);
-  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -52,23 +54,36 @@ const page = () => {
         <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">
           กรุณากรอก OTP
         </h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            inputMode="numeric"
+        <form 
+          onSubmit={handleSubmit} 
+          className="flex flex-col items-center"
+        >
+          <InputOTP
+            maxLength={6}
             value={otp}
-            onChange={handleChange}
-            placeholder="กรอกรหัส OTP 6 หลัก"
-            className="w-full border border-gray-300 rounded-md px-4 py-3 text-xl text-center tracking-widest focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+            onChange={setOtp}
+            className="flex justify-center gap-2"
+          >
+            <InputOTPGroup>
+              <InputOTPSlot index={0} />
+              <InputOTPSlot index={1} />
+              <InputOTPSlot index={2} />
+            </InputOTPGroup>
+            <InputOTPSeparator />
+            <InputOTPGroup>
+              <InputOTPSlot index={3} />
+              <InputOTPSlot index={4} />
+              <InputOTPSlot index={5} />
+            </InputOTPGroup>
+          </InputOTP>
 
-          <button
+          <Button
             type="submit"
             disabled={loading}
             className="mt-6 w-full bg-blue-600 text-white py-3 rounded-md font-semibold hover:bg-blue-700 transition disabled:opacity-50"
           >
             {loading ? "กำลังตรวจสอบ..." : "ยืนยัน OTP"}
-          </button>
+          </Button>
         </form>
       </div>
     </div>
